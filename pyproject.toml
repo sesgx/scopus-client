@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scopus-client"
+version = "0.0.1"
+requires-python = ">= 3.9"
+description = "Async Scopus Client to interact with their HTTP interface. Includes automatic retry and API keys swapping."
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["scopus", "api"]
+dependencies = ["aiometer==0.5.0", "httpx==0.27.0", "tenacity==8.2.3"]
+
+[project.optional-dependencies]
+dev-test = [
+    "pytest==8.0.2",
+    "pytest-asyncio==0.23.5",
+    "pytest-httpx==0.30.0",
+    "pytest-cov==4.1.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = "--doctest-modules"
+
+[tool.ruff]
+extend-select = [
+    # isort
+    "I001",
+    "C",
+]
+unfixable = ["F841"]
+exclude = [".venv", "~/.pyenv/"]
+ignore-init-module-imports = true
+fix = true
