@@ -1,3 +1,4 @@
+![sesgx logo](sesgx_header.png)
 # scopus-client
 
 > Async Scopus Client to interact with their HTTP interface. Includes automatic retry and API keys swapping.
