@@ -93,7 +93,7 @@ def check_string_is_invalid(
 ) -> bool:
     """Checks if the given response indicates that the string is invalid.
 
-    A string is invalid if the response status code is 400 or 413.
+    A string is invalid if the response status code is 400, 413, 414 (URI too long).
 
     Args:
         response (httpx.Response): Response to check.
@@ -101,7 +101,7 @@ def check_string_is_invalid(
     Returns:
         True if the string is invalid, False otherwise.
     """
-    return response.status_code in (400, 413)
+    return response.status_code in (400, 413, 414)
 
 
 def create_clients_list(
@@ -393,7 +393,8 @@ class ScopusClient:
             self.fetch_and_parse,
             params_list,
             max_at_once=max_concurrent_tasks,
-            max_per_second=len(self.clients_list) * MAX_REQUESTS_PER_SECOND_PER_API_KEY,
+            max_per_second=len(self.clients_list) *
+            MAX_REQUESTS_PER_SECOND_PER_API_KEY,
         ) as next_pages:
             async for page in next_pages:
                 yield page
