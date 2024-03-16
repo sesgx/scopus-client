@@ -27,7 +27,7 @@ MAX_RETRIES_ON_SSL_ERROR = 5
 
 @dataclass(frozen=True)
 class Page:
-    """A successfull Scopus Response.
+    """A successful Scopus Response.
 
     Args:
         n_results (int): Number of results for this query. Notice that even if it displays more than 5000 results, Scopus will limit to retrieve only 5000.
